@@ -6,8 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Util-Klasse um Dateien einzulesen.
+ * 
+ * @author Timo Röder, Dominik Müller, Gin-Wah Chau, Marcus Nolzen
+ * @version 1.0
+ */
 public class FileLoader {
 
+	/**
+	 * Methode zum laden eines Wörterbuches.
+	 *
+	 * @param path
+	 * 		Pfad zum Wörterbuch
+	 * @param lang
+	 * 		Sprache des Wörterbuches
+	 * @return
+	 * 		Wörterbuch-Objekt nach Laden
+	 * @throws FileNotFoundException
+	 * 		wenn mit dem angegebenen Pfad keine Datei gefunden wurde
+	 */
 	public static Wörterbuch loadFile(String path, String lang) throws FileNotFoundException {
 		File f = new File(path);
 		if(!f.exists())

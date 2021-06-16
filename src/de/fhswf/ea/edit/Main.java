@@ -8,8 +8,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
-
+/**
+ * Main-Klasse zum Ausführen des Programmes.
+ *
+ * @author Timo Röder, Dominik Müller, Gin-Wah Chau, Marcus Nolzen
+ * @version 1.0
+ */
 public class Main extends Application {
+	
+	/**
+	 * Start-Methode für JavaFX-Applikation.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -26,6 +35,12 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Main-Methode zum Starten des Programmes
+	 *
+	 * @param args
+	 * 		Kommandozeilenparameter
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

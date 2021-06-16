@@ -10,6 +10,16 @@ import java.util.concurrent.TimeUnit;
 
 import de.fhswf.ea.edit.utils.Wörterbuch;
 
+/**
+ * 
+ * Klasse zum Ausführen des Editier-Distanz Algorithmus.
+ * Benötigt Wörterbuch um das gesuchte Wort zu finden.
+ * 
+ * Algorithmus arbeitet asynchron durch EditDistanceAsync interne Klasse.
+ *
+ * @author Timo Röder, Dominik Müller, Gin-Wah Chau, Marcus Nolzen
+ * @version 1.0
+ */
 public class EditDistance {
 
 	private final int WORDS_PER_THREAD = 1000;
@@ -17,10 +27,23 @@ public class EditDistance {
 	private Wörterbuch wB;
 	private ConcurrentHashMap<String, Integer> results;
 	
+	/**
+	 * Konstruktor zum Übergeben eines Wörterbuches.
+	 */
 	public EditDistance(Wörterbuch wB) {
 		this.wB = wB;
 	}
 	
+	/**
+	 * Algorithmus-Teil des Programmes.
+	 * Führt den Algorithmus aus bis durch alle Wörter des Wörterbuches durchgegangen wurde.
+	 * Abschliessend warten auf asynchrone Klassen.
+	 *
+	 * @param word
+	 * 		Gesuchtes Wort
+	 * @return
+	 * 		Gibt String-Array mit den 10 nächsten Wörtern zurück.
+	 */
 	public String[] getNextWords(String word){
 		results = new ConcurrentHashMap<String, Integer>();
 		
@@ -77,40 +100,16 @@ public class EditDistance {
 		lowestED[index] = eD;
 		lowestEDS[index] = s;
 	}
-
 	
-	
-//	private int min(int x, int y, int z) {
-//		if (x <= y && x <= z)
-//			return x;
-//		if (y <= x && y <= z)
-//			return y;
-//		return z;
-//	}
-//
-//	private int maxFormula(int i, int j) {
-//		if(arr[i][j] != null)
-//			return arr[i][j];
-//		if (i == 0) {
-//			arr[i][j] = j;
-//			return j;
-//		}
-//		if (j == 0) {
-//			arr[i][j] = i;
-//			return i;
-//		}
-//		
-//		if (x.charAt(i - 1) == zFinal.charAt(j - 1)) {
-//			int r = min(maxFormula(i - 1, j - 1), maxFormula(i - 1, j) + 1, maxFormula(i, j - 1) + 1);
-//			arr[i][j] = r;
-//			return (r);
-//		} else {
-//			int r = min(maxFormula(i - 1, j - 1), maxFormula(i - 1, j), maxFormula(i, j - 1)) + 1;
-//			arr[i][j] = r;
-//			return (r);
-//		}
-//	}
-	
+	/**
+	 * 
+	 * Klasse abgeleitet von Thread,
+	 * zum asynchronen Ablauf der Editier-Distanz.
+	 * 
+	 * Benötigt Liste von Wörtern und gesuchtes Wort.
+	 * Ergebnisse werden in "results"-ConcurrentHashMap eingespeichert von EditDistance.
+	 *
+	 */
 	private class EditDistanceAsync extends Thread {
 		
 		private String finalWord = "";

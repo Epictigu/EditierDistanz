@@ -13,8 +13,26 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * 
+ * Klasse zum erstellen einer Pane in der die einzelnen Graphikobjekte eingetragen werden.
+ * Enthält ein TextField, TextLabel und ein ListView.
+ * - TextField: Nutzereingabe des gesuchten Wortes.
+ * - TextLabel: Label der ListView.
+ * - ListView: Anzeige der 10 ähnlichsten Wörter laut Algorithmus.
+ * 
+ * @author Timo Röder, Dominik Müller, Gin-Wah Chau, Marcus Nolzen
+ * @version 1.0
+ */
 public class MainComponent extends BorderPane {
 
+	/**
+	 * Konstruktor zum Erstellen der Pane und der einzelnen Objekte. 
+	 * Gibt dem TextField einen ChangeListener zum Ausführen des Algorithmus.
+	 *
+	 * @throws FileNotFoundException
+	 * 		Wenn der Pfad für das Wörterbuch inakkurat ist.
+	 */
 	public MainComponent() throws FileNotFoundException {
 		super();
 
